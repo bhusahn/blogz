@@ -69,12 +69,15 @@ def signup():
         
         existing_user = User.query.filter_by(username=username).first()
         if not existing_user:
-            if not username: 
+            if not username or username.strip()=='': 
                 flash('Please provide a username', 'error')
-            if not password: 
+                return redirect('/signup')
+            if not password or password.strip()=='': 
                 flash('Please provide a password', 'error')
+                return redirect('/signup')
             if verify !=password: 
                 flash('Please use the same passwords to verify', 'error')
+                return redirect('/signup')
            
             else:
                 new_user=User(username, password)
