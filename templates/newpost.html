@@ -1,18 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-        .error {
-            color:red;
-        }
-        </style>
-    {% with messages = get_flashed_messages(with_categories=True) %}
-    <ul>
-    {% for category, message in messages %}
-        <li class="{{category}}"> {{message}}</li>
-    {% endfor %}
-    </ul>
-    {% endwith %}
     <h1 align="center">Add a Blog Entry</h1>
     <form method='post' action="/newpost">
         <label>
@@ -26,6 +14,7 @@
             <p>Your new blog:</p>
             <textarea rows="15" cols="50"name='blog-entry' /></textarea>
         <br><br><br><input type="submit" value='Add Entry' />   
+        <p class="error">{{error}}</p>
         
     </label>
         

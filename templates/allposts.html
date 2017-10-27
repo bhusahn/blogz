@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+    <style> 
+     .author {
+      font-style: italic;
+      font-size: 12px;
+      }</style>
+  <h1 align="center">Blog posts!</h1>
+
+
+    
+
+    {% if blogs|length == 0 %}
+    <p>No blogs yet</p>
+    {% else %}
+   
+            {% for blog in blogs %}
+            
+            
+            <h2><u><a href="{{url_for('all_posts', id=blog.id)}}">{{blog.title}}</a></u></h2>
+            <p>{{blog.body}}</p>
+            <p class="author">
+                "written by"
+                <a href="{{url_for('all_posts', user=blog.owner.id)}}">{{blog.owner.username}}</a>
+            </p>
+                
+            {% endfor %}
+       
+    
+    {% endif %}
+    
+    {% endblock %}

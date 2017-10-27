@@ -6,21 +6,44 @@
     </head>
 <body>
         <style>
+            .error{
+                color:red;
+            }
                 body {
-                   background-color:lightblue;
+                   background-color:rgb(201, 216, 236);
                 }
-                
+            .logged{
+                color:rgb(14, 122, 41);
+            }  
         
         h1 {
             color: maroon;
              }
               </style>
-        <a href="/blog">Main Blog Page</a>
+         <b><a href="/">HOME</a></b>
+        <b><a href="/allposts">ALL POSTS</a>
         
-        <a href="/newpost">Add a Blog Entry</a>
+        <a href="/newpost">NEW POST</a>
+        <div align = "right">
+            <a href='/login'>Login</a>
+           </div>
+        <div align = "right">
+            <a href='/logout'>Log out</a></b>
+        </div>
+
+         {% with messages = get_flashed_messages(with_categories=True) %}
+         <ul>
+             {% for category, message in messages %}
+             <li class="{{category}}">{{message}}</li>
+
+             {% endfor %}
+         </ul>
+
+
+         {% endwith %}
         
-{% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
 </body>
 </html>
